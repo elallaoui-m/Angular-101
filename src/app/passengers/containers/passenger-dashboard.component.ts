@@ -7,7 +7,7 @@ import { PassengerService } from "../passenger.service";
   selector: "component-dashboard",
   template: `
     <h3>AirLine passengers</h3>
-    <passenger-counter [items]="passengers"></passenger-counter>
+    <passenger-counter [items]="passengers || []"></passenger-counter>
     <passenger-list
       *ngFor="let passenger of passengers"
       [passenger]="passenger"
@@ -23,7 +23,13 @@ export class PassengerDashboardComponent implements OnInit {
   constructor(private passengerService: PassengerService) {}
 
   ngOnInit() {
-    this.passengers = this.passengerService.getPassengers();
+    this.getPassengers();
+  }
+
+  getPassengers(): void {
+    this.passengerService
+      .getPassengers()
+      .subscribe((passengers) => (this.passengers = passengers));
   }
 
   editPassenger(passenger: Passenger) {
