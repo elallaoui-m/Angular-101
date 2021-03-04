@@ -3,8 +3,8 @@
     {
       "id": 1,
       "fullName": "Stephen",
-      "checkedIn": true,
-      "checkInDate": 1614609300000,
+      "checkedIn": false,
+      "checkInDate": 1614605700000,
       "children": [
         {
           "name": "hamza",
@@ -51,6 +51,12 @@
       "fullName": "Tina",
       "checkedIn": false,
       "checkInDate": 0
+    },
+    {
+      "fullName": "hello",
+      "checkedIn": true,
+      "checkInDate": 1616942040000,
+      "id": 6
     }
   ]
 }

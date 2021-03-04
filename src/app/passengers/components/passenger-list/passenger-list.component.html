@@ -25,7 +25,7 @@
   <input
     type="datetime-local"
     [(ngModel)]="passengerToEmit.checkInDate"
-    *ngIf="editing"
+    *ngIf="editing && passengerToEmit.checkedIn"
   />
 </div>
 <div class="children">

@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Subscription } from "rxjs";
 
 import { Passenger } from "src/assets/passengers";
 import { PassengerService } from "../passenger.service";
@@ -8,8 +9,10 @@ import { PassengerService } from "../passenger.service";
   templateUrl: "passenger-dashboard.component.html",
   styleUrls: ["./passenger-dashboard.component.css"],
 })
-export class PassengerDashboardComponent implements OnInit {
+export class PassengerDashboardComponent implements OnInit, OnDestroy {
   public passengers;
+
+  private addSubcription$: Subscription;
 
   constructor(private passengerService: PassengerService) {}
 
@@ -45,8 +48,14 @@ export class PassengerDashboardComponent implements OnInit {
   }
 
   addPassenger(passenger: Passenger) {
-    this.passengerService.addPassenger(passenger).subscribe((passenger) => {
-      this.passengers = [...this.passengers, passenger];
-    });
+    this.addSubcription$ = this.passengerService
+      .addPassenger(passenger)
+      .subscribe((passenger) => {
+        this.passengers = [...this.passengers, passenger];
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.addSubcription$.unsubscribe();
   }
 }
