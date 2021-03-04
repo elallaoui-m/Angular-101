@@ -1,10 +1,22 @@
 {
   "passengers": [
     {
+      "id": 1,
+      "fullName": "Stephen",
+      "checkedIn": true,
+      "checkInDate": 1614609300000,
+      "children": [
+        {
+          "name": "hamza",
+          "age": 15
+        }
+      ]
+    },
+    {
       "id": 2,
       "fullName": "Rose",
       "checkedIn": false,
-      "checkInDate": null,
+      "checkInDate": 0,
       "children": [
         {
           "name": "hamza",
@@ -20,12 +32,12 @@
       "id": 3,
       "fullName": "James",
       "checkedIn": true,
-      "checkInDate": 1491606000000
+      "checkInDate": 1491602400000
     },
     {
       "id": 4,
       "fullName": "Louise",
-      "checkedIn": true,
+      "checkedIn": false,
       "checkInDate": 1488412800000,
       "children": [
         {
@@ -38,19 +50,7 @@
       "id": 5,
       "fullName": "Tina",
       "checkedIn": false,
-      "checkInDate": null
-    },
-    {
-      "fullName": "gfd",
-      "checkedIn": true,
-      "checkInDate": "2021-03-13T12:55",
-      "id": 6
-    },
-    {
-      "fullName": "hello",
-      "checkedIn": true,
-      "checkInDate": 1616940540000,
-      "id": 7
+      "checkInDate": 0
     }
   ]
 }

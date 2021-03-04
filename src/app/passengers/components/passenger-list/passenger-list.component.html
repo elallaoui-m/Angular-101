@@ -1,0 +1,37 @@
+<input
+  type="checkbox"
+  [(ngModel)]="passengerToEmit.checkedIn"
+  *ngIf="editing"
+/>
+<span
+  class="status"
+  *ngIf="!editing"
+  [ngClass]="{
+    'checked-in': passengerToEmit.checkedIn,
+    'checked-out': !passengerToEmit.checkedIn
+  }"
+></span>
+<input type="text" [(ngModel)]="passengerToEmit.fullName" *ngIf="editing" />
+<span *ngIf="!editing">{{ passengerToEmit.fullName }}</span>
+<div class="checkin-date">
+  Check in date :
+  <span *ngIf="!editing">
+    {{
+      passengerToEmit.checkInDate
+        ? (passengerToEmit.checkInDate | date: "y MMMM d" | uppercase)
+        : "not checked in"
+    }}
+  </span>
+  <input
+    type="datetime-local"
+    [(ngModel)]="passengerToEmit.checkInDate"
+    *ngIf="editing"
+  />
+</div>
+<div class="children">
+  Children : {{ passengerToEmit.children?.length || 0 }}
+</div>
+<div class="action">
+  <button (click)="toggleEdit()">{{ editing ? "done" : "edit" }}</button>
+  <button (click)="handleRemove(passengerToEmit.id)">remove</button>
+</div>

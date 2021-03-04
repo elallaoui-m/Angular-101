@@ -1,53 +1,42 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { Passenger } from "src/assets/passengers";
+import { Component, Input, Output, EventEmitter, OnInit } from "@angular/core";
+import { logging } from "protractor";
+import { Passenger, PassengerDTO } from "src/assets/passengers";
 
 @Component({
   selector: "passenger-list",
-  template: `<span
-      class="status"
-      [ngClass]="{
-        'checked-in': passenger.checkedIn,
-        'checked-out': !passenger.checkedIn
-      }"
-    ></span>
-    <input
-      type="text"
-      [value]="passenger.fullName"
-      *ngIf="editing"
-      (input)="handleFullNameEdit($event)"
-    />
-    <span *ngIf="!editing">{{ passenger.fullName }}</span>
-    <div class="checkin-date">
-      Check in date :
-      {{
-        passenger.checkInDate
-          ? (passenger.checkInDate | date: "y MMMM d" | uppercase)
-          : "not checked in"
-      }}
-    </div>
-    <div class="children">Children : {{ passenger.children?.length || 0 }}</div>
-    <div class="action">
-      <button (click)="toggleEdit()">{{ editing ? "done" : "edit" }}</button>
-      <button (click)="handleRemove(passenger.id)">remove</button>
-    </div>`,
+  templateUrl: "passenger-list.component.html",
   styleUrls: ["./passenger-list.component.css"],
 })
-export class PassengerListComponent {
+export class PassengerListComponent implements OnInit {
   @Input() passenger: Passenger;
   @Output() edit: EventEmitter<Passenger> = new EventEmitter();
   @Output() remove: EventEmitter<number> = new EventEmitter();
   editing: boolean = false;
-  passengerToEmit: Passenger;
+  passengerToEmit: PassengerDTO;
+
+  ngOnInit(): void {
+    this.passengerToEmit = {
+      ...this.passenger,
+      checkInDate: new Date(this.passenger.checkInDate).toString(),
+    };
+  }
 
   toggleEdit() {
     if (this.editing) {
-      this.edit.emit(this.passengerToEmit);
+      this.edit.emit({
+        ...this.passenger,
+        ...this.passengerToEmit,
+        checkInDate: new Date(this.passengerToEmit.checkInDate).getTime(),
+      });
+    } else {
+      this.passengerToEmit = {
+        ...this.passenger,
+        checkInDate:
+          new Date(this.passenger.checkInDate).toISOString().slice(0, 16) + "",
+      };
+      console.log(this.passengerToEmit);
     }
     this.editing = !this.editing;
-  }
-
-  handleFullNameEdit(event: any) {
-    this.passengerToEmit = { ...this.passenger, fullName: event.target.value };
   }
 
   handleRemove(id: number) {

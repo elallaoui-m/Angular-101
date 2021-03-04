@@ -10,6 +10,14 @@ export interface Passenger {
   children?: child[];
 }
 
+export interface PassengerDTO {
+  id: number;
+  fullName: string;
+  checkedIn: boolean;
+  checkInDate: string;
+  children?: child[];
+}
+
 export const passengers: Passenger[] = [
   {
     id: 1,

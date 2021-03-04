@@ -24,6 +24,8 @@ export class PassengerDashboardComponent implements OnInit {
   }
 
   editPassenger(passenger: Passenger) {
+    console.log(passenger);
+
     this.passengerService
       .editPassenger(passenger)
       .subscribe(
