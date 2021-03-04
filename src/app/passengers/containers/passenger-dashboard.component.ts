@@ -5,16 +5,7 @@ import { PassengerService } from "../passenger.service";
 
 @Component({
   selector: "component-dashboard",
-  template: `
-    <h3>AirLine passengers</h3>
-    <passenger-counter [items]="passengers || []"></passenger-counter>
-    <passenger-list
-      *ngFor="let passenger of passengers"
-      [passenger]="passenger"
-      (edit)="editPassenger($event)"
-      (remove)="removePassenger($event)"
-    ></passenger-list>
-  `,
+  templateUrl: "passenger-dashboard.component.html",
   styleUrls: ["./passenger-dashboard.component.css"],
 })
 export class PassengerDashboardComponent implements OnInit {
@@ -49,5 +40,11 @@ export class PassengerDashboardComponent implements OnInit {
       .subscribe(
         () => (this.passengers = this.passengers.filter((e) => e.id !== id))
       );
+  }
+
+  addPassenger(passenger: Passenger) {
+    this.passengerService.addPassenger(passenger).subscribe((passenger) => {
+      this.passengers = [...this.passengers, passenger];
+    });
   }
 }

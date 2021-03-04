@@ -19,6 +19,13 @@ export class PassengerService {
     );
   }
 
+  public addPassenger = (passenger: Passenger): Observable<any> => {
+    return this.http.post(this.passengersUrl, passenger, this.httpOptions).pipe(
+      tap((_: Passenger) => console.log(`added passenger id=${_.id}`)),
+      catchError(this.handleError<any>("addPassenger"))
+    );
+  };
+
   public editPassenger = (passenger: Passenger): Observable<any> => {
     return this.http
       .put(this.passengersUrl + `/${passenger.id}`, passenger, this.httpOptions)

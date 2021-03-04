@@ -39,6 +39,18 @@
       "fullName": "Tina",
       "checkedIn": false,
       "checkInDate": null
+    },
+    {
+      "fullName": "gfd",
+      "checkedIn": true,
+      "checkInDate": "2021-03-13T12:55",
+      "id": 6
+    },
+    {
+      "fullName": "hello",
+      "checkedIn": true,
+      "checkInDate": 1616940540000,
+      "id": 7
     }
   ]
 }

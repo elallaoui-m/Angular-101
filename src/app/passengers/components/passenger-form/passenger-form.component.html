@@ -1,0 +1,40 @@
+<div class="passenger-form">
+  <h3>Add new passenger</h3>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)" ngNativeValidate>
+    <div class="form-group">
+      <label for="fullName">Full Name : </label>
+      <input
+        type="text"
+        name="fullName"
+        id="fullName"
+        #fullName="ngModel"
+        ngModel
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="checkedIn">CheckedIn : </label>
+      <input
+        type="checkbox"
+        name="checkedIn"
+        id="checkedIn"
+        ngModel
+        #checkedIn="ngModel"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="checkInDate">Check-In Date: </label>
+      <input
+        type="datetime-local"
+        name="checkInDate"
+        id="checkInDate"
+        ngModel
+        #checkInDate="ngModel"
+      />
+    </div>
+
+    <button type="submit">Add</button>
+  </form>
+</div>
