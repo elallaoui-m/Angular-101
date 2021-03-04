@@ -19,6 +19,24 @@ export class PassengerService {
     );
   }
 
+  public editPassenger = (passenger: Passenger): Observable<any> => {
+    return this.http
+      .put(this.passengersUrl + `/${passenger.id}`, passenger, this.httpOptions)
+      .pipe(
+        tap((_) => console.log(`updated passenger id=${passenger.id}`)),
+        catchError(this.handleError<any>("editPassenger"))
+      );
+  };
+
+  public removePassenger = (id: number): Observable<any> => {
+    return this.http
+      .delete(this.passengersUrl + `/${id}`, this.httpOptions)
+      .pipe(
+        tap((_) => console.log(`remove passenger id=${id}`)),
+        catchError(this.handleError<any>("removePassenger"))
+      );
+  };
+
   private handleError = <T>(operation = "operation", result?: T) => {
     return (error: any): Observable<T> => {
       // TODO: send the error to remote logging infrastructure
