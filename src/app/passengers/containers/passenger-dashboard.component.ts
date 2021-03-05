@@ -12,7 +12,8 @@ import { PassengerService } from "../passenger.service";
 export class PassengerDashboardComponent implements OnInit, OnDestroy {
   public passengers;
 
-  private addSubcription$: Subscription;
+  private removeSubcription$: Subscription;
+  private editSubcription$: Subscription;
 
   constructor(private passengerService: PassengerService) {}
 
@@ -27,9 +28,7 @@ export class PassengerDashboardComponent implements OnInit, OnDestroy {
   }
 
   editPassenger(passenger: Passenger) {
-    console.log(passenger);
-
-    this.passengerService
+    this.editSubcription$ = this.passengerService
       .editPassenger(passenger)
       .subscribe(
         (passenger) =>
@@ -40,22 +39,15 @@ export class PassengerDashboardComponent implements OnInit, OnDestroy {
   }
 
   removePassenger(id: number) {
-    this.passengerService
+    this.removeSubcription$ = this.passengerService
       .removePassenger(id)
       .subscribe(
         () => (this.passengers = this.passengers.filter((e) => e.id !== id))
       );
   }
 
-  addPassenger(passenger: Passenger) {
-    this.addSubcription$ = this.passengerService
-      .addPassenger(passenger)
-      .subscribe((passenger) => {
-        this.passengers = [...this.passengers, passenger];
-      });
-  }
-
   ngOnDestroy(): void {
-    this.addSubcription$.unsubscribe();
+    this.removeSubcription$?.unsubscribe();
+    this.editSubcription$?.unsubscribe();
   }
 }

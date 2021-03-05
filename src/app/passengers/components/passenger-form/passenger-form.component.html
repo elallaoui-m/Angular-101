@@ -7,8 +7,7 @@
         type="text"
         name="fullName"
         id="fullName"
-        #fullName="ngModel"
-        ngModel
+        [(ngModel)]="passenger.fullName"
         required
       />
     </div>
@@ -19,19 +18,17 @@
         type="checkbox"
         name="checkedIn"
         id="checkedIn"
-        ngModel
-        #checkedIn="ngModel"
+        [(ngModel)]="passenger.checkedIn"
       />
     </div>
 
-    <div *ngIf="checkedIn.value" class="form-group">
+    <div *ngIf="passenger.checkedIn" class="form-group">
       <label for="checkInDate">Check-In Date: </label>
       <input
         type="datetime-local"
         name="checkInDate"
         id="checkInDate"
-        ngModel
-        #checkInDate="ngModel"
+        [(ngModel)]="passenger.checkInDate"
       />
     </div>
 

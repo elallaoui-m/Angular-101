@@ -31,8 +31,9 @@ export class PassengerListComponent implements OnInit {
     } else {
       this.passengerToEmit = {
         ...this.passenger,
-        checkInDate:
-          new Date(this.passenger.checkInDate).toISOString().slice(0, 16) + "",
+        checkInDate: new Date(this.passenger.checkInDate)
+          .toISOString()
+          .slice(0, 16),
       };
       console.log(this.passengerToEmit);
     }

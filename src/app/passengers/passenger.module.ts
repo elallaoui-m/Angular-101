@@ -7,6 +7,7 @@ import { PassengerService } from "./passenger.service";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 import { PassengerForm } from "./components/passenger-form/passenger-form.component";
+import { PassengerAddComponent } from "./containers/passenger-add/passenger-add.component";
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { PassengerForm } from "./components/passenger-form/passenger-form.compon
     PassengerCountComponent,
     PassengerListComponent,
     PassengerForm,
+    PassengerAddComponent,
   ],
   imports: [CommonModule, HttpClientModule, FormsModule],
   providers: [PassengerService],
