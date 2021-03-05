@@ -8,7 +8,7 @@ import { Passenger, PassengerDTO } from "src/assets/passengers";
   styleUrls: ["passenger-form.component.css"],
 })
 export class PassengerForm implements OnInit {
-  @Output() add: EventEmitter<Passenger> = new EventEmitter();
+  @Output() emit: EventEmitter<Passenger> = new EventEmitter();
   @Input() oldPassenger: Passenger;
 
   passenger: PassengerDTO = {
@@ -22,7 +22,7 @@ export class PassengerForm implements OnInit {
     if (this.oldPassenger) {
       this.passenger = {
         ...this.oldPassenger,
-        checkInDate: new Date(this.passenger.checkInDate)
+        checkInDate: new Date(this.oldPassenger.checkInDate)
           .toISOString()
           .slice(0, 16),
       };
@@ -34,10 +34,8 @@ export class PassengerForm implements OnInit {
       ...this.passenger,
       checkInDate: this.toTimestamp(this.passenger.checkInDate),
     };
-    this.add.emit(passenger);
+    this.emit.emit(passenger);
     form.reset();
-
-    console.log(this.passenger);
   };
 
   private toTimestamp = (strDate) => {

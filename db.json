@@ -2,9 +2,9 @@
   "passengers": [
     {
       "id": 2,
-      "fullName": "Rose",
+      "fullName": "Rose 22",
       "checkedIn": true,
-      "checkInDate": 1614808800000,
+      "checkInDate": 1614625200000,
       "children": [
         {
           "name": "hamza",
@@ -51,6 +51,12 @@
       "checkedIn": true,
       "id": 7,
       "checkInDate": 1614935880000
+    },
+    {
+      "fullName": "Mari Richmond",
+      "checkedIn": true,
+      "id": 8,
+      "checkInDate": 1616160540000
     }
   ]
 }
